@@ -2,21 +2,23 @@ from __future__ import division
 import pygame, Queue, math
 class Unit(pygame.sprite.Sprite):
     "Unit class, subclasses are different kinds of units"
-    
-    def __init__(self, number, rect, hp, movespeed, imgname, team):
+    movespeed=0 
+    hp=0
+    maxhp=0
+    orders=Queue.Queue()
+    attacking=False
+    target=None
+    current_order=None
+    def __init__(self, number, rect, imgname, team):
         "Initalizes. team is a Team object to add the unit to."
 
         super(Unit, self).__init__(team)
         self.image=pygame.image.load(imgname)
         self.rect=rect 
-        self.hp=hp
-        self.maxhp=hp
+
         self.number=number
-        self.movespeed=movespeed
-        self.orders=Queue.Queue()       
-        self.attacking=False
-        self.target=None
-        self.current_order=None
+
+        
         
     def update(self):
         "Updates the unit"
@@ -53,4 +55,8 @@ class OrderSeek(OrderSleep):
 class OrderStandGround(OrderSleep):
     "Makes nothing happen right now. TODO:Make unit attack threats"
     pass
+
+#TODO:Define Team object
+#TODO:Define Building object
+#TODO:Create main.py
     
